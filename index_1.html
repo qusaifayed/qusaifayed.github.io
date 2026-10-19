@@ -1,0 +1,1168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Qusai Fayed — Industrial Engineer specializing in production planning and data analysis. Power BI dashboards and case studies.">
+<meta property="og:title" content="Qusai Fayed — Production Planning & Data Analysis">
+<meta property="og:description" content="Power BI dashboards and case studies by Qusai Fayed.">
+<meta property="og:image" content="media/aqaba-poster.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E6B65'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' text-anchor='middle' fill='%23F4FBFA'%3EQF%3C/text%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Qusai Fayed Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap">
+<style>
+/* Layout: data board in two themes (beige day / navy night) (live chart hero + heatmap dot grid), multi-page (hash routes: home, projects, aqaba, credit-card, contact).
+   Hero sits on a live Gantt schedule canvas; GSAP page-curtain transitions, ScrollTrigger reveals, Lenis smooth scroll,
+   React Bits–style effects (SplitText, BlurText, ShinyText, SpotlightCard, StarBorder, ScrollVelocity). */
+:root{
+  --bg:#F3ECDF; --bg-2:#ECE2D1; --surface:#FBF7EF; --surface-2:#F2E9DA;
+  --line:rgba(96,72,40,.13); --line-2:rgba(96,72,40,.24);
+  --fg:#2B2117; --muted:#6F604C; --dim:#9C8B73;
+  --accent:#1E6B65; --accent-ink:#F4FBFA; --blue:#3E6FC7;
+  --ph:#B83A68; --ph-soft:rgba(184,58,104,.07); --ph-line:rgba(184,58,104,.45);
+  --accent-rgb:30,107,101; --blue-rgb:62,111,199; --fg-rgb:43,33,23; --dot-rgb:120,96,62;
+  --glass:rgba(251,247,239,.72); --tag-bg:rgba(251,247,239,.85); --panel-bg:rgba(255,252,246,.95); --node-bg:#FFFDF8; --wl-bg:#F3ECDF;
+  --note-bg:rgba(251,247,239,.92); --tip-bg:rgba(255,252,246,.95); --shadow:rgba(90,62,24,.28); --wire:rgba(96,72,40,.3);
+  --ok:#1E9A62; --bad:#C8423B; --pdot:#1E6B65; --role-a:#1E6B65; --role-b:#6DB8AE;
+  --f-display:"Syne","Manrope",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-ar:"Alexandria","Manrope",Tahoma,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#070B14; --bg-2:#0B1120; --surface:#0F1728; --surface-2:#131D33;
+  --line:rgba(150,172,214,.13); --line-2:rgba(150,172,214,.24);
+  --fg:#E9EEF7; --muted:#8C98AF; --dim:#5D6980;
+  --accent:#4FD1C5; --accent-ink:#04201D; --blue:#4C8DFF;
+  --ph:#FF8FB4; --ph-soft:rgba(255,143,180,.08); --ph-line:rgba(255,143,180,.5);
+  --accent-rgb:79,209,197; --blue-rgb:76,141,255; --fg-rgb:233,238,247; --dot-rgb:140,165,215;
+  --glass:rgba(11,17,32,.62); --tag-bg:rgba(15,23,40,.7); --panel-bg:rgba(12,18,32,.94); --node-bg:#121B2E; --wl-bg:#0B1120;
+  --note-bg:rgba(7,11,20,.85); --tip-bg:rgba(15,23,40,.92); --shadow:rgba(0,0,0,.75); --wire:rgba(150,172,214,.32);
+  --ok:#3DDC97; --bad:#FF7A7A; --pdot:#C4F5EE; --role-a:#8EE3D8; --role-b:#E8FFFB;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#070B14; --bg-2:#0B1120; --surface:#0F1728; --surface-2:#131D33;
+  --line:rgba(150,172,214,.13); --line-2:rgba(150,172,214,.24);
+  --fg:#E9EEF7; --muted:#8C98AF; --dim:#5D6980;
+  --accent:#4FD1C5; --accent-ink:#04201D; --blue:#4C8DFF;
+  --ph:#FF8FB4; --ph-soft:rgba(255,143,180,.08); --ph-line:rgba(255,143,180,.5);
+  --accent-rgb:79,209,197; --blue-rgb:76,141,255; --fg-rgb:233,238,247; --dot-rgb:140,165,215;
+  --glass:rgba(11,17,32,.62); --tag-bg:rgba(15,23,40,.7); --panel-bg:rgba(12,18,32,.94); --node-bg:#121B2E; --wl-bg:#0B1120;
+  --note-bg:rgba(7,11,20,.85); --tip-bg:rgba(15,23,40,.92); --shadow:rgba(0,0,0,.75); --wire:rgba(150,172,214,.32);
+  --ok:#3DDC97; --bad:#FF7A7A; --pdot:#C4F5EE; --role-a:#8EE3D8; --role-b:#E8FFFB;
+  color-scheme:dark}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.65;overflow-x:hidden}
+html[lang="ar"] body{font-family:var(--f-ar);line-height:1.85}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{font-family:var(--f-ar)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin-inline:auto}
+
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.nav{position:fixed;top:env(safe-area-inset-top,0px);inset-inline:0;z-index:50;padding-block:14px}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;font-size:15px}
+.brand i{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.links{display:flex;align-items:center;gap:6px}
+.links a{text-decoration:none;color:var(--muted);font-size:14px;padding:6px 12px;border-radius:999px;transition:color .2s,background .2s}
+.links a:hover{color:var(--fg)}
+.links a.on{color:var(--fg);background:var(--surface-2)}
+@media (max-width:560px){.links a.opt{display:none}}
+.lang{font:500 13px var(--f-ar);color:var(--fg);background:var(--surface-2);border:1px solid var(--line-2);border-radius:999px;padding:6px 14px;cursor:pointer;margin-inline-start:6px}
+html[lang="ar"] .lang{font-family:var(--f-body)}
+.lang:hover{border-color:var(--accent)}
+.brand span{white-space:nowrap}
+@media (max-width:480px){
+  .nav .wrap{padding:8px 10px;gap:6px}
+  .brand{font-size:14px;gap:8px}
+  .links{gap:0}
+  .links a{font-size:13px;padding:6px 8px}
+  .theme-btn{width:30px;height:30px;margin-inline-start:2px}
+  .lang{padding:5px 10px;font-size:12px;margin-inline-start:4px}
+}
+@media (max-width:370px){.brand i{display:none}.links a{padding:6px 6px}}
+.theme-btn{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;color:var(--fg);background:var(--surface-2);border:1px solid var(--line-2);cursor:pointer;margin-inline-start:6px;transition:border-color .2s}
+.theme-btn:hover{border-color:var(--accent)}
+.theme-btn .i-sun{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .theme-btn .i-sun{display:block}:root:not([data-theme="light"]) .theme-btn .i-moon{display:none}}
+:root[data-theme="dark"] .theme-btn .i-sun{display:block}
+:root[data-theme="dark"] .theme-btn .i-moon{display:none}
+
+/* page curtain */
+.curtain{position:fixed;inset:0;z-index:80;background:var(--bg-2);border-top:3px solid var(--accent);display:grid;place-items:center;transform:translateY(100%);pointer-events:none}
+.curtain span{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,8vw,90px);letter-spacing:-.03em;color:var(--fg)}
+html[lang="ar"] .curtain span{font-family:var(--f-ar);letter-spacing:0}
+
+/* hero */
+.hero{position:relative;padding-block:150px 90px;overflow:hidden;border-bottom:1px solid var(--line)}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,footer{position:relative;z-index:1}
+#ribbon{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.45) 38%,#000 55%);mask-image:linear-gradient(90deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.45) 38%,#000 55%)}
+html[dir="rtl"] #ribbon{-webkit-mask-image:linear-gradient(270deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.45) 38%,#000 55%);mask-image:linear-gradient(270deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.45) 38%,#000 55%)}
+@media (max-width:920px){#ribbon{opacity:.45;-webkit-mask-image:none;mask-image:none}}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:160px;background:linear-gradient(transparent,var(--bg));z-index:0;pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+@media (max-width:920px){.hero .wrap{grid-template-columns:1fr;gap:56px}}
+.hero-text{display:grid;gap:22px;min-width:0}
+#heroName{color:var(--accent);text-shadow:0 0 48px rgba(var(--accent-rgb),.28);line-height:.92}
+#heroName .n1,#heroName .n2{display:block}
+html[lang="ar"] #heroName{line-height:1.15}
+.stack{margin:0;font:500 13px var(--f-mono);color:var(--dim);letter-spacing:.04em}
+/* floating workflow panel */
+.panel-wrap{perspective:1400px;min-width:0}
+.panel{position:relative;background:var(--panel-bg);border:1px solid var(--line-2);border-radius:18px;
+  box-shadow:0 50px 100px -30px var(--shadow),0 0 90px -20px rgba(var(--accent-rgb),.28);
+  transform:rotateY(-14deg) rotateX(7deg) rotateZ(1deg);direction:ltr;overflow:hidden}
+@media (max-width:920px){.panel{transform:none}}
+.p-head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:13px;font-weight:600;flex-wrap:wrap}
+.p-head .mono{font:500 11px var(--f-mono);color:var(--dim);border-inline-start:1px solid var(--line-2);padding-inline-start:12px}
+.p-head .run{margin-inline-start:auto;font:500 11px var(--f-mono);color:var(--ok);display:flex;align-items:center;gap:6px}
+.p-head .run::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:pulse 1.6s infinite}
+.p-graph-wrap{position:relative;margin:8px 12px;height:250px;overflow:hidden}
+.p-graph{position:relative;height:250px;width:520px;transform-origin:0 0}
+.p-graph svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.wire{fill:none;stroke:var(--wire);stroke-width:1.2}
+.wire.flow{stroke:var(--accent);stroke-dasharray:3 7;animation:flow 1.1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-20}}
+.pdot{fill:var(--pdot);filter:drop-shadow(0 0 4px var(--accent));transition:opacity .3s}
+.node{position:absolute;z-index:1;background:var(--node-bg);border:1px solid var(--line-2);border-radius:10px;padding:8px 12px;display:grid;gap:1px;min-width:118px;transition:border-color .4s,box-shadow .4s}
+.node b{font-size:13px;font-weight:600;white-space:nowrap}
+.node small{font:400 11px var(--f-mono);color:var(--dim);white-space:nowrap}
+.node.hot{border-color:rgba(var(--accent-rgb),.75);box-shadow:0 0 26px -6px rgba(var(--accent-rgb),.65)}
+.wl{position:absolute;z-index:1;font:500 10px var(--f-mono);color:var(--muted);background:var(--wl-bg);border:1px solid var(--line-2);border-radius:5px;padding:1px 6px;transform:translate(-50%,-50%)}
+
+.p-log{border-top:1px solid var(--line);padding:12px 18px 14px;font:400 12px var(--f-mono)}
+.p-log small{color:var(--dim);font-size:11px}
+.p-log ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:5px;height:66px;overflow:hidden}
+.p-log li{display:flex;gap:12px;color:var(--muted);align-items:center;white-space:nowrap}
+.p-log li::before{content:"";flex:none;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.p-log li time{color:var(--fg)}
+.p-log li span:last-child{margin-inline-start:auto;color:var(--dim)}
+.page-head{background:radial-gradient(600px 300px at 85% 0%,rgba(var(--accent-rgb),.10),transparent 70%)}
+.tag{display:inline-flex;align-items:center;gap:10px;justify-self:start;font:500 12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line-2);background:var(--tag-bg);border-radius:999px;padding:7px 14px}
+html[lang="ar"] .tag{font-family:var(--f-ar);letter-spacing:0;font-size:13px;text-transform:none}
+.tag b{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,6.6vw,86px);line-height:.95;letter-spacing:-.035em;margin:0;text-wrap:balance}
+html[lang="ar"] h1{letter-spacing:0;line-height:1.2;font-weight:800}
+.role{margin:0;font-size:clamp(22px,3vw,34px);font-weight:700;line-height:1.25}
+.shiny{background:linear-gradient(110deg,var(--role-a) 35%,var(--role-b) 50%,var(--role-a) 65%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4.5s linear infinite}
+@keyframes shine{from{background-position:120% 0}to{background-position:-120% 0}}
+.intro{max-width:60ch;margin:0;color:var(--muted);font-size:17px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+.star{position:relative;display:inline-flex;border-radius:12px;padding:1.5px;text-decoration:none;
+  background:conic-gradient(from var(--ang),transparent 0 70%,var(--accent) 82%,#fff 86%,transparent 92%);animation:spin 3.5s linear infinite}
+.star span{display:block;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:12px 22px;font-weight:600;font-size:15px}
+@keyframes spin{to{--ang:360deg}}
+.btn-solid{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:13px 22px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s}
+.btn-solid:hover{transform:translateY(-2px)}
+
+/* marquee */
+.velocity{padding-block:26px;border-bottom:1px solid var(--line);overflow:hidden;display:grid;gap:10px}
+.track{display:flex;width:max-content;will-change:transform;direction:ltr}
+.track span{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,4.5vw,46px);white-space:nowrap;padding-inline:22px;color:var(--dim)}
+.track span.hl{color:var(--fg)}
+.track span em{font-style:normal;color:var(--accent);padding-inline-start:22px}
+
+/* sections */
+section{padding-block:100px;border-bottom:1px solid var(--line)}
+.page-head{padding-block:150px 60px}
+.kicker{font:500 12px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+html[lang="ar"] .kicker{font-family:var(--f-ar);letter-spacing:0;font-size:14px;text-transform:none}
+h2{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,5.4vw,60px);line-height:1.05;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+html[lang="ar"] h2{letter-spacing:0;line-height:1.35}
+.big{font-size:clamp(42px,7.5vw,92px);font-weight:800;letter-spacing:-.035em;line-height:.98}
+html[lang="ar"] .big{letter-spacing:0;line-height:1.3}
+.lede{color:var(--muted);max-width:58ch;margin:0 0 48px;font-size:17px}
+.page-head .lede{margin-bottom:0}
+.row-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:40px}
+.row-head .lede{margin:0}
+.more{font-weight:600;color:var(--accent);text-decoration:none;white-space:nowrap}
+.more:hover{text-decoration:underline}
+
+/* SpotlightCard */
+.spot{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;overflow:hidden;isolation:isolate}
+.spot::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(var(--accent-rgb),.13),transparent 60%)}
+.spot:hover::before{opacity:1}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px}
+.spot h3{margin:14px 0 8px;font-size:22px;font-weight:700}
+.spot p{margin:0;color:var(--muted)}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line-2);color:var(--accent)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;list-style:none;padding:0}
+.tools li{font:500 14px var(--f-mono);border:1px solid var(--line-2);background:var(--bg-2);border-radius:10px;padding:9px 16px;transition:border-color .2s,color .2s}
+.tools li:hover{border-color:var(--accent);color:var(--accent)}
+
+/* project cards (links) */
+.projects{display:grid;gap:28px}
+a.project{display:grid;grid-template-columns:1.2fr 1fr;padding:0;text-decoration:none;transition:border-color .3s,transform .3s}
+a.project:hover{border-color:var(--line-2);transform:translateY(-3px)}
+@media (max-width:860px){a.project{grid-template-columns:1fr}}
+.shot{position:relative;min-height:320px;overflow:hidden;border-inline-end:1px solid var(--line);background:var(--bg-2)}
+@media (max-width:860px){.shot{border-inline-end:0;border-bottom:1px solid var(--line);min-height:250px}}
+.mock{position:absolute;inset:22px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:56px 1fr 1fr;gap:10px;direction:ltr;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+a.project:hover .mock{transform:scale(1.03)}
+.mock div{background:var(--surface-2);border:1px solid var(--line);border-radius:8px}
+.mock .kpi{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 12px}
+.mock .kpi i{display:block;height:6px;border-radius:3px;background:var(--line-2);width:60%}
+.mock .kpi i+i{height:10px;width:40%;background:var(--accent);opacity:.7}
+.mock .chart{grid-column:span 3;display:flex;align-items:flex-end;gap:6px;padding:14px}
+.mock .chart b{flex:1;background:linear-gradient(var(--blue),rgba(var(--blue-rgb),.25));border-radius:3px 3px 0 0}
+.mock .chart b.dip{background:linear-gradient(var(--accent),rgba(var(--accent-rgb),.25))}
+.mock .side{grid-row:span 2}
+.mock .line{grid-column:span 3;position:relative}
+.mock svg{position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px)}
+.media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+a.project:hover .media{transform:scale(1.03)}
+.shot.vid{background:#0E1525}
+.shot .media{object-fit:contain}
+.shot-note{position:absolute;inset-inline-start:22px;bottom:22px;z-index:2;font:500 12px var(--f-mono);color:var(--ph);background:var(--note-bg);
+  border:1px dashed var(--ph);border-radius:8px;padding:7px 11px}
+html[lang="ar"] .shot-note{font-family:var(--f-ar)}
+.pbody{padding:30px;display:grid;gap:16px;align-content:start;min-width:0}
+.pnum{font:500 12px var(--f-mono);color:var(--dim);letter-spacing:.1em}
+.pbody h3{margin:0;font-size:clamp(22px,2.6vw,28px);line-height:1.25;font-weight:700;text-wrap:balance}
+.pbody p{margin:0;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font:500 12px var(--f-mono);color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:3px 10px}
+.go{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--accent);margin-top:6px}
+.go i{font-style:normal;transition:transform .3s}
+a.project:hover .go i{transform:translateX(5px)}
+html[dir="rtl"] a.project:hover .go i{transform:translateX(-5px)}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:18px;list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{counter-increment:s;padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--surface);position:relative;overflow:hidden}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 12px var(--f-mono);color:var(--accent);display:block;margin-bottom:28px}
+.steps li::after{content:"";position:absolute;top:0;inset-inline-start:0;height:2px;width:var(--p,0%);background:var(--accent)}
+.steps h3{margin:0 0 6px;font-size:19px}
+.steps p{margin:0;color:var(--muted);font-size:15px}
+
+/* cta band */
+.band{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.band .big{margin:0}
+
+/* case study */
+.back{display:inline-flex;gap:8px;align-items:center;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:28px}
+.back:hover{color:var(--fg)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:44px}
+.meta div{padding:16px 0;display:grid;gap:4px}
+.meta small{font:500 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+html[lang="ar"] .meta small{font-family:var(--f-ar);letter-spacing:0;font-size:13px;text-transform:none}
+.meta b{font-weight:600}
+.frame{border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:var(--bg-2);direction:ltr}
+.frame-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--line);font:500 12px var(--f-mono);color:var(--muted)}
+.frame-bar i{width:10px;height:10px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line-2)}
+.frame-bar span{margin-inline-start:8px}
+.frame .screen{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden}
+.frame .screen .mock{inset:22px}
+.cols{display:grid;grid-template-columns:1fr 1.3fr;gap:56px}
+@media (max-width:860px){.cols{grid-template-columns:1fr;gap:36px}}
+.cols h3{font-family:var(--f-display);font-size:26px;margin:0 0 12px;letter-spacing:-.01em}
+html[lang="ar"] .cols h3{letter-spacing:0}
+.cols p{margin:0;color:var(--muted)}
+.approach{list-style:none;padding:0;margin:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.approach li{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.approach li b{font:500 12px var(--f-mono);color:var(--accent);padding-top:3px}
+.approach li span{color:var(--fg)}
+.finds{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px}
+.finds .spot{display:grid;gap:10px}
+.finds .num{font-family:var(--f-display);font-weight:800;font-size:44px;line-height:1;color:var(--accent)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px}
+.gallery .screen{aspect-ratio:16/10}
+.panels{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:920px){.panels{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.panels{grid-template-columns:1fr}}
+.ptile{margin:0;display:grid;gap:12px;align-content:start;min-width:0}
+.pimg{display:block;width:100%;aspect-ratio:4/3;padding:12px;border:1px solid var(--line-2);border-radius:14px;background:#0E1525;cursor:zoom-in;overflow:hidden;transition:border-color .3s,transform .3s}
+.pimg:hover{border-color:var(--accent);transform:translateY(-3px)}
+.pimg img{width:100%;height:100%;object-fit:contain;display:block}
+.ptile figcaption{display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:2px;align-items:baseline}
+.ptile .pn{font:500 11px var(--f-mono);color:var(--accent);grid-row:span 2}
+.ptile figcaption b{font-size:15px}
+.ptile figcaption small{color:var(--muted);font-size:13px;line-height:1.5}
+.panels.pages{grid-template-columns:repeat(2,1fr)}
+.panels.pages .wide{grid-column:1/-1}
+@media (max-width:560px){.panels.pages{grid-template-columns:1fr}}
+.pimg.cc{aspect-ratio:1190/662;padding:0;background:#13110F}
+.pimg.cc img{object-fit:cover}
+.shot.cc{background:#13110F}
+.screen.shot-cc{aspect-ratio:1190/662}
+/* GoldCard (from Qusai's GoldCard.css) */
+.gc-block {
+  --bg: #0F0E0C; --panel: #1A1814; --line: #2E2A22;
+  --gold: #E8A838; --cream: #F2E6CC; --grey: #9A958C;
+  display: flex; flex-direction: column; align-items: center; gap: 28px;
+  font-family: "Segoe UI", system-ui, sans-serif; color: var(--cream);
+}
+
+/* brand buttons */
+.gc-slicer { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.gc-slicer button {
+  background: var(--panel); border: 1px solid var(--line); color: var(--grey);
+  padding: 7px 14px; border-radius: 8px; font: 600 11px "Segoe UI", system-ui, sans-serif;
+  letter-spacing: 1.5px; cursor: pointer; transition: border-color .2s, color .2s;
+}
+.gc-slicer button:hover { color: var(--cream); }
+.gc-slicer button.on { border-color: var(--gold); color: var(--gold); }
+
+/* card */
+.gc-wrap { perspective: 900px; }
+.gc {
+  position: relative; width: 340px; max-width: calc(100vw - 32px); aspect-ratio: 1.586;
+  border-radius: 16px; overflow: hidden; padding: 20px 22px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, #3a2a14 0%, transparent 55%),
+    linear-gradient(135deg, #231a0e 0%, #14110c 45%, #2a1d0c 100%);
+  border: 1px solid rgba(232, 168, 56, .45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .55), 0 0 0 1px rgba(232, 168, 56, .08) inset;
+  animation: gc-float 6s ease-in-out infinite, gc-glow 4s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+.gc::after {
+  content: ""; position: absolute; top: -50%; left: -60%; width: 40%; height: 200%;
+  background: linear-gradient(100deg, transparent 0%, rgba(242, 230, 204, 0) 20%,
+              rgba(242, 230, 204, .22) 50%, rgba(242, 230, 204, 0) 80%, transparent 100%);
+  transform: rotate(18deg); animation: gc-shine 4.5s ease-in-out infinite; pointer-events: none;
+}
+.gc::before {
+  content: ""; position: absolute; right: -70px; bottom: -90px; width: 260px; height: 260px;
+  border-radius: 50%; pointer-events: none;
+  background: repeating-radial-gradient(circle, rgba(232, 168, 56, .10) 0 1px, transparent 1px 9px);
+}
+.gc-top { display: flex; justify-content: space-between; align-items: center; position: relative; }
+.gc-bank { font-weight: 700; font-size: 11px; letter-spacing: 3px; color: var(--gold); }
+.gc-brand { font-weight: 800; font-size: 15px; letter-spacing: 2px; font-style: italic; }
+.gc-chiprow { display: flex; align-items: center; gap: 12px; margin-top: 18px; position: relative; }
+.gc-chip {
+  width: 42px; height: 31px; border-radius: 6px; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #f6d27a, #c98a2b 55%, #f0c35e);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25); animation: gc-chip 3s ease-in-out infinite;
+}
+.gc-chip::before, .gc-chip::after { content: ""; position: absolute; background: rgba(74, 53, 32, .55); }
+.gc-chip::before { left: 0; right: 0; top: 50%; height: 1px; }
+.gc-chip::after { top: 0; bottom: 0; left: 50%; width: 1px; }
+.gc-nfc { width: 20px; height: 20px; border: 2px solid transparent; border-right-color: var(--gold);
+          border-radius: 50%; position: relative; opacity: .8; }
+.gc-nfc::before { content: ""; position: absolute; inset: 3px; border: 2px solid transparent;
+                  border-right-color: var(--gold); border-radius: 50%; }
+.gc-num { margin-top: 14px; font: 600 17px Consolas, "Courier New", monospace; letter-spacing: 3px;
+          position: relative; text-shadow: 0 1px 0 rgba(0, 0, 0, .6); text-align: left; }
+.gc-stats { display: flex; gap: 26px; margin-top: 12px; position: relative; }
+.gc-lbl { font-weight: 700; font-size: 8px; letter-spacing: 2px; color: var(--grey); }
+[dir="rtl"] .gc-lbl { letter-spacing: 0; font-size: 10px; }
+.gc-val { font-weight: 700; font-size: 16px; color: var(--gold); margin-top: 2px; }
+
+@keyframes gc-shine { 0% { left: -60%; } 55% { left: 130%; } 100% { left: 130%; } }
+@keyframes gc-float {
+  0%, 100% { transform: translateY(0) rotateX(4deg) rotateY(-6deg); }
+  50% { transform: translateY(-8px) rotateX(-2deg) rotateY(6deg); }
+}
+@keyframes gc-glow {
+  0%, 100% { box-shadow: 0 18px 40px rgba(0,0,0,.55), 0 0 0 rgba(232,168,56,0); }
+  50% { box-shadow: 0 18px 40px rgba(0,0,0,.55), 0 0 22px rgba(232,168,56,.28); }
+}
+@keyframes gc-chip { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.25); } }
+@media (prefers-reduced-motion: reduce) { .gc, .gc::after, .gc-chip { animation: none; } }
+.gc-section{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media (max-width:860px){.gc-section{grid-template-columns:1fr;gap:36px}}
+.gc-section .lede{margin-bottom:0}
+.lightbox{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(4,8,16,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:zoom-out}
+.lightbox img{max-width:min(1200px,100%);max-height:100%;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.ph{color:var(--ph);background:var(--ph-soft);border:1px dashed var(--ph-line);border-radius:5px;padding:1px 7px}
+.next{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;text-decoration:none}
+.next small{display:block;font:500 12px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+html[lang="ar"] .next small{font-family:var(--f-ar);letter-spacing:0;font-size:13px;text-transform:none}
+.next strong{font-family:var(--f-display);font-size:clamp(24px,3.4vw,38px);line-height:1.15;letter-spacing:-.02em}
+html[lang="ar"] .next strong{font-family:var(--f-ar);letter-spacing:0}
+.next .arrow{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);font-size:22px;flex:none;transition:transform .3s}
+.next:hover .arrow{transform:rotate(-45deg)}
+html[dir="rtl"] .next .arrow{scale:-1 1}
+html[dir="rtl"] .back i,html[dir="rtl"] .go i{display:inline-block;scale:-1 1}
+.band .big{font-family:var(--f-display)}
+html[lang="ar"] .band .big{font-family:var(--f-ar)}
+
+/* contact */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px}
+.ccard{display:grid;gap:10px;min-width:0}
+.ccard .k{font:500 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+html[lang="ar"] .ccard .k{font-family:var(--f-ar);letter-spacing:0;font-size:13px;text-transform:none}
+.ccard .v{font-size:16px;overflow-wrap:anywhere;direction:ltr;text-align:start;user-select:all}
+html[lang="ar"] .ccard .v{text-align:right}
+.copy{justify-self:start;font:600 13px var(--f-body);background:var(--surface-2);border:1px solid var(--line-2);color:var(--fg);border-radius:8px;padding:6px 12px;cursor:pointer}
+html[lang="ar"] .copy{font-family:var(--f-ar)}
+.copy:hover{border-color:var(--accent)}
+footer{padding-block:30px 46px;color:var(--dim);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer .mono{font-family:var(--f-mono)}
+
+@media (prefers-reduced-motion:reduce){.shiny,.star,.tag b{animation:none}.mock,a.project{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="lightbox" id="lightbox" hidden><img alt=""></div>
+<div class="curtain" id="curtain" aria-hidden="true"><span id="curtainLabel"></span></div>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<nav class="nav gutter" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#home"><i></i><span data-en="Qusai Fayed" data-ar="قصي فايد">Qusai Fayed</span></a>
+    <div class="links">
+      <a class="opt" href="#home" data-nav="home" data-en="Home" data-ar="الرئيسية">Home</a>
+      <a href="#projects" data-nav="projects" data-en="Projects" data-ar="المشاريع">Projects</a>
+      <a href="#contact" data-nav="contact" data-en="Contact" data-ar="تواصل">Contact</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch light or dark mode"><svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="lang" id="langBtn" type="button" aria-label="Switch language">العربية</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HOME ================= -->
+<main data-page="home" data-en-title="Home" data-ar-title="الرئيسية">
+  <header class="hero gutter">
+    <canvas id="ribbon" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="tag"><b></b><span data-en="open to work / production planning · data" data-ar="متاح للعمل / تخطيط الإنتاج · البيانات">open to work / production planning · data</span></span>
+        <h1 id="heroName"><span class="n1" data-en="Qusai" data-ar="قصي">Qusai</span> <span class="n2" data-en="Fayed" data-ar="فايد">Fayed</span></h1>
+        <p class="role"><span class="shiny" data-en="Production Planning &amp; Data Analysis" data-ar="تخطيط الإنتاج وتحليل البيانات">Production Planning &amp; Data Analysis</span></p>
+        <p class="intro" id="heroIntro" data-en="I plan production and analyze the data behind it. I turn operational and business data into dashboards that show what is happening and where to act." data-ar="أخطط للإنتاج وأحلل البيانات التي خلفه. أحوّل بيانات التشغيل والأعمال إلى لوحات معلومات تبيّن ما يحدث وأين يجب التدخل.">I plan production and analyze the data behind it. I turn operational and business data into dashboards that show what is happening and where to act.</p>
+        <div class="cta">
+          <a class="btn-solid" href="#projects" data-en="View projects" data-ar="شاهد المشاريع">View projects</a>
+          <a class="star" href="#contact"><span data-en="Get in touch" data-ar="تواصل معي">Get in touch</span></a>
+        </div>
+        <p class="stack">Excel / Power BI / SQL / DAX</p>
+      </div>
+      <div class="panel-wrap" aria-hidden="true">
+        <div class="panel" id="panel">
+          <div class="p-head"><span>weekly_production_plan</span><span class="mono">5 steps / 1 branch</span><span class="run">running</span></div>
+          <div class="p-graph-wrap"><div class="p-graph" id="pgraph">
+            <svg></svg>
+            <div class="node" data-n="1" style="left:1%;top:39%"><b>Sales orders</b><small>sql</small></div>
+            <div class="node" data-n="2" style="left:36%;top:4%"><b>Demand &gt; capacity</b><small>condition</small></div>
+            <div class="node" data-n="3" style="left:36%;top:72%"><b>Schedule line B</b><small>excel</small></div>
+            <div class="node" data-n="4" style="left:71%;top:4%"><b>Add overtime</b><small>needs approval</small></div>
+            <div class="node" data-n="5" style="left:71%;top:72%"><b>Refresh dashboard</b><small>power bi</small></div>
+          </div></div>
+          <div class="p-log"><small>last runs</small><ul id="plog"></ul></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="velocity" aria-hidden="true">
+    <div class="track" id="t1"></div>
+    <div class="track" id="t2"></div>
+  </div>
+
+  <section class="gutter">
+    <div class="wrap">
+      <p class="kicker" data-en="About" data-ar="عني">About</p>
+      <h2 class="split" data-en="Where planning meets data" data-ar="حيث يلتقي التخطيط بالبيانات">Where planning meets data</h2>
+      <p class="lede reveal" data-en="Two areas that meet in the same place: deciding what to produce and when, and reading what the data says about it." data-ar="مجالان يلتقيان في نقطة واحدة: تحديد ماذا ننتج ومتى، وقراءة ما تقوله البيانات عن ذلك.">Two areas that meet in the same place: deciding what to produce and when, and reading what the data says about it.</p>
+      <div class="grid2">
+        <div class="spot reveal">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="10" height="3" rx="1"/><rect x="7" y="10.5" width="13" height="3" rx="1"/><rect x="5" y="17" width="8" height="3" rx="1"/></svg></div>
+          <h3 data-en="Production planning" data-ar="تخطيط الإنتاج">Production planning</h3>
+          <p data-en="Capacity, scheduling, inventory and material replenishment for manufacturing operations." data-ar="الطاقة الإنتاجية والجدولة والمخزون وإعادة تزويد المواد في العمليات التصنيعية.">Capacity, scheduling, inventory and material replenishment for manufacturing operations.</p>
+        </div>
+        <div class="spot reveal">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+          <h3 data-en="Data analysis" data-ar="تحليل البيانات">Data analysis</h3>
+          <p data-en="Cleaning and modeling data, writing measures, and building dashboards that answer real business questions." data-ar="تنظيف البيانات ونمذجتها وكتابة المقاييس وبناء لوحات معلومات تجيب عن أسئلة عمل حقيقية.">Cleaning and modeling data, writing measures, and building dashboards that answer real business questions.</p>
+        </div>
+      </div>
+      <ul class="tools reveal" aria-label="Tools"><li>Excel</li><li>Power BI</li><li>SQL</li><li>DAX</li></ul>
+    </div>
+  </section>
+
+  <section class="gutter">
+    <div class="wrap">
+      <p class="kicker" data-en="Selected work" data-ar="أعمال مختارة">Selected work</p>
+      <div class="row-head">
+        <h2 class="split" style="margin:0" data-en="Featured projects" data-ar="مشاريع مختارة">Featured projects</h2>
+        <a class="more" href="#projects" data-en="All projects →" data-ar="كل المشاريع ←">All projects →</a>
+      </div>
+      <div class="projects" data-cards></div>
+    </div>
+  </section>
+
+  <section class="gutter">
+    <div class="wrap">
+      <p class="kicker" data-en="How I work" data-ar="طريقة عملي">How I work</p>
+      <h2 class="split" data-en="From raw data to a decision" data-ar="من البيانات الخام إلى القرار">From raw data to a decision</h2>
+      <ol class="steps">
+        <li class="reveal"><h3 data-en="Collect" data-ar="الجمع">Collect</h3><p data-en="Pull the data from files, databases and public sources with Excel and SQL." data-ar="سحب البيانات من الملفات وقواعد البيانات والمصادر العامة باستخدام Excel وSQL.">Pull the data from files, databases and public sources with Excel and SQL.</p></li>
+        <li class="reveal"><h3 data-en="Clean" data-ar="التنظيف">Clean</h3><p data-en="Fix types, gaps and duplicates so every number can be trusted." data-ar="معالجة الأنواع والقيم الناقصة والمكررة حتى يكون كل رقم موثوقاً.">Fix types, gaps and duplicates so every number can be trusted.</p></li>
+        <li class="reveal"><h3 data-en="Model" data-ar="النمذجة">Model</h3><p data-en="Build relationships and DAX measures that match the business question." data-ar="بناء العلاقات ومقاييس DAX التي تخدم سؤال العمل.">Build relationships and DAX measures that match the business question.</p></li>
+        <li class="reveal"><h3 data-en="Visualize" data-ar="العرض">Visualize</h3><p data-en="Design a Power BI report that shows the answer at a glance." data-ar="تصميم تقرير Power BI يُظهر الجواب من النظرة الأولى.">Design a Power BI report that shows the answer at a glance.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="gutter">
+    <div class="wrap band">
+      <p class="big split" data-en="Let's work together." data-ar="خلّينا نشتغل سوا.">Let's work together.</p>
+      <a class="btn-solid" href="#contact" data-en="Contact me" data-ar="تواصل معي">Contact me</a>
+    </div>
+  </section>
+</main>
+
+<!-- ================= PROJECTS ================= -->
+<main data-page="projects" data-en-title="Projects" data-ar-title="المشاريع" hidden>
+  <header class="page-head gutter">
+    <div class="wrap">
+      <p class="kicker" data-en="Work" data-ar="الأعمال">Work</p>
+      <h2 class="big split" data-en="Projects" data-ar="المشاريع">Projects</h2>
+      <p class="lede reveal" data-en="Power BI dashboards built end to end, from raw data to the final report. Open any project to see the full case study." data-ar="لوحات Power BI مبنية من البداية للنهاية، من البيانات الخام حتى التقرير النهائي. افتح أي مشروع لتشوف التفاصيل كاملة.">Power BI dashboards built end to end, from raw data to the final report. Open any project to see the full case study.</p>
+    </div>
+  </header>
+  <section class="gutter" style="padding-top:0">
+    <div class="wrap"><div class="projects" data-cards></div></div>
+  </section>
+</main>
+
+<!-- ================= CASE STUDY: AQABA ================= -->
+<main data-page="aqaba" data-en-title="Aqaba Port" data-ar-title="ميناء العقبة" hidden>
+  <header class="page-head gutter">
+    <div class="wrap">
+      <a class="back" href="#projects"><i>←</i> <span data-en="All projects" data-ar="كل المشاريع">All projects</span></a>
+      <p class="kicker" data-en="Case study · Power BI" data-ar="دراسة حالة · Power BI">Case study · Power BI</p>
+      <h2 class="big split" data-en="Red Sea Crisis: Impact on Aqaba Port" data-ar="أزمة البحر الأحمر: الأثر على ميناء العقبة">Red Sea Crisis: Impact on Aqaba Port</h2>
+      <p class="lede reveal" data-en="How the Red Sea shipping disruption changed vessel traffic and trade at Jordan's only seaport, comparing activity before and after the crisis." data-ar="كيف غيّر اضطراب الملاحة في البحر الأحمر حركة السفن والتجارة في الميناء البحري الوحيد في الأردن، مع مقارنة النشاط قبل الأزمة وبعدها.">How the Red Sea shipping disruption changed vessel traffic and trade at Jordan's only seaport, comparing activity before and after the crisis.</p>
+      <div class="meta reveal">
+        <div><small data-en="Data source" data-ar="مصدر البيانات">Data source</small><b data-en="IMF PortWatch · AIS vessel data" data-ar="IMF PortWatch · بيانات AIS للسفن">IMF PortWatch · AIS vessel data</b></div>
+        <div><small data-en="Scope" data-ar="نطاق الدراسة">Scope</small><b data-en="2019–2026 · 4 maritime chokepoints" data-ar="2019–2026 · 4 ممرات بحرية">2019–2026 · 4 maritime chokepoints</b></div>
+        <div><small data-en="Tech stack" data-ar="الأدوات المستخدمة">Tech stack</small><b>Power BI · DAX</b></div>
+        <div><small data-en="Analysis" data-ar="نوع التحليل">Analysis</small><b data-en="Supply-chain disruption &amp; recovery" data-ar="تحليل اضطراب سلاسل الإمداد والتعافي">Supply-chain disruption &amp; recovery</b></div>
+      </div>
+    </div>
+  </header>
+  <section class="gutter" style="padding-top:0">
+    <div class="wrap">
+      <div class="frame reveal">
+        <div class="frame-bar"><i></i><i></i><i></i><span>aqaba_port_red_sea.pbix</span></div>
+        <div class="screen"><video class="media" src="media/aqaba.mp4?v=3" poster="media/aqaba-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="Aqaba port dashboard walkthrough"></video></div>
+      </div>
+    </div>
+  </section>
+  <section class="gutter">
+    <div class="wrap cols">
+      <div class="reveal">
+        <p class="kicker" data-en="The question" data-ar="السؤال">The question</p>
+        <h3 data-en="What did the crisis do to Aqaba?" data-ar="شو عملت الأزمة بميناء العقبة؟">What did the crisis do to Aqaba?</h3>
+        <p data-en="Attacks on shipping in the Red Sea pushed many carriers to avoid the Bab el-Mandeb route. Aqaba sits at the end of that route, so the question was how much its traffic and trade changed, and whether it has recovered." data-ar="الهجمات على السفن في البحر الأحمر خلّت كثير من شركات الشحن تتجنب مضيق باب المندب. ميناء العقبة بآخر هاد الطريق، فالسؤال كان: قديش تغيّرت حركة السفن والتجارة فيه، وهل رجع للوضع الطبيعي؟">Attacks on shipping in the Red Sea pushed many carriers to avoid the Bab el-Mandeb route. Aqaba sits at the end of that route, so the question was how much its traffic and trade changed, and whether it has recovered.</p>
+      </div>
+      <div class="reveal">
+        <p class="kicker" data-en="Approach" data-ar="طريقة العمل">Approach</p>
+        <ol class="approach">
+          <li><b>01</b><span data-en="Downloaded daily port activity for Aqaba from IMF PortWatch." data-ar="تحميل بيانات النشاط اليومي لميناء العقبة من IMF PortWatch.">Downloaded daily port activity for Aqaba from IMF PortWatch.</span></li>
+          <li><b>02</b><span data-en="Cleaned the data and built a date table for time comparisons." data-ar="تنظيف البيانات وبناء جدول تواريخ للمقارنات الزمنية.">Cleaned the data and built a date table for time comparisons.</span></li>
+          <li><b>03</b><span data-en="Wrote DAX measures for before/after averages and percentage change." data-ar="كتابة مقاييس DAX لمتوسطات ما قبل وبعد الأزمة ونسبة التغيّر.">Wrote DAX measures for before/after averages and percentage change.</span></li>
+          <li><b>04</b><span data-en="Designed the report pages around the timeline of the crisis." data-ar="تصميم صفحات التقرير حول التسلسل الزمني للأزمة.">Designed the report pages around the timeline of the crisis.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section class="gutter">
+    <div class="wrap">
+      <p class="kicker" data-en="Key findings" data-ar="أهم النتائج">Key findings</p>
+      <h2 class="split" data-en="What the data showed" data-ar="شو بيّنت البيانات">What the data showed</h2>
+      <div class="finds">
+        <div class="spot reveal"><span class="num">−19%</span><p data-en="Daily ship calls dropped from 3.11 to 2.53 when the Red Sea crisis hit." data-ar="عدد السفن اليومي نزل من 3.11 إلى 2.53 لما بدأت أزمة البحر الأحمر.">Daily ship calls dropped from 3.11 to 2.53 when the Red Sea crisis hit.</p></div>
+        <div class="spot reveal"><span class="num">3.64</span><p data-en="Traffic recovered above the pre-crisis baseline: 3.50 calls a day in the lull and 3.64 during the regional war." data-ar="الحركة رجعت أعلى من مستوى ما قبل الأزمة: 3.50 سفينة يومياً بفترة الهدوء و3.64 خلال الحرب الإقليمية.">Traffic recovered above the pre-crisis baseline: 3.50 calls a day in the lull and 3.64 during the regional war.</p></div>
+        <div class="spot reveal"><span class="num">32%</span><p data-en="Container ships are the largest share of calls since Nov 2023, ahead of dry bulk at 30%." data-ar="سفن الحاويات أكبر نسبة من زيارات السفن منذ نوفمبر 2023، وبعدها سفن البضائع السائبة الجافة بـ 30%.">Container ships are the largest share of calls since Nov 2023, ahead of dry bulk at 30%.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="gutter">
+    <div class="wrap">
+      <p class="kicker" data-en="Inside the dashboard" data-ar="جوّا الداشبورد">Inside the dashboard</p>
+      <h2 class="split" data-en="Dashboard panels" data-ar="أقسام الداشبورد">Dashboard panels</h2>
+      <div class="panels">
+        <figure class="ptile reveal"><button class="pimg" type="button" data-full="media/aqaba-ops.webp" aria-label="Enlarge Port operations"><img src="media/aqaba-ops.webp" alt="Port operations panel" decoding="async"></button>
+          <figcaption><span class="pn">01</span><b data-en="Port operations" data-ar="عمليات الميناء">Port operations</b><small data-en="Headline KPIs and a live view of berths and vessel movements." data-ar="أهم المؤشرات وعرض حي للأرصفة وحركة السفن.">Headline KPIs and a live view of berths and vessel movements.</small></figcaption></figure>
+        <figure class="ptile reveal"><button class="pimg" type="button" data-full="media/aqaba-route.webp" aria-label="Enlarge Red Sea route"><img src="media/aqaba-route.webp" alt="Red Sea route panel" decoding="async"></button>
+          <figcaption><span class="pn">02</span><b data-en="Red Sea route" data-ar="طريق البحر الأحمر">Red Sea route</b><small data-en="Ship traffic along the route from Bab el-Mandeb up to Suez and Aqaba." data-ar="حركة السفن على الطريق من باب المندب إلى السويس والعقبة.">Ship traffic along the route from Bab el-Mandeb up to Suez and Aqaba.</small></figcaption></figure>
+        <figure class="ptile reveal"><button class="pimg" type="button" data-full="media/aqaba-chokepoints.webp" aria-label="Enlarge Chokepoint transits"><img src="media/aqaba-chokepoints.webp" alt="Chokepoint transits panel" decoding="async"></button>
+          <figcaption><span class="pn">03</span><b data-en="Chokepoint transits" data-ar="العبور في الممرات البحرية">Chokepoint transits</b><small data-en="Daily transits at Suez, Bab el-Mandeb, the Cape and Hormuz." data-ar="العبور اليومي في السويس وباب المندب ورأس الرجاء الصالح وهرمز.">Daily transits at Suez, Bab el-Mandeb, the Cape and Hormuz.</small></figcaption></figure>
+        <figure class="ptile reveal"><button class="pimg" type="button" data-full="media/aqaba-calls.webp" aria-label="Enlarge Aqaba ship calls"><img src="media/aqaba-calls.webp" alt="Aqaba ship calls panel" decoding="async"></button>
+          <figcaption><span class="pn">04</span><b data-en="Aqaba ship calls" data-ar="زيارات السفن للعقبة">Aqaba ship calls</b><small data-en="Monthly calls across the four phases of the crisis." data-ar="زيارات السفن الشهرية خلال مراحل الأزمة الأربع.">Monthly calls across the four phases of the crisis.</small></figcaption></figure>
+        <figure class="ptile reveal"><button class="pimg" type="button" data-full="media/aqaba-phase.webp" aria-label="Enlarge Calls by phase"><img src="media/aqaba-phase.webp" alt="Calls by phase panel" decoding="async"></button>
+          <figcaption><span class="pn">05</span><b data-en="Calls by phase" data-ar="الزيارات حسب المرحلة">Calls by phase</b><small data-en="Average calls per day: baseline, crisis, lull and war." data-ar="متوسط الزيارات اليومية: قبل الأزمة، الأزمة، الهدوء، الحرب.">Average calls per day: baseline, crisis, lull and war.</small></figcaption></figure>
+        <figure class="ptile reveal"><button class="pimg" type="button" data-full="media/aqaba-vessels.webp" aria-label="Enlarge Vessel mix"><img src="media/aqaba-vessels.webp" alt="Vessel mix panel" decoding="async"></button>
+          <figcaption><span class="pn">06</span><b data-en="Vessel mix" data-ar="أنواع السفن">Vessel mix</b><small data-en="Share of calls by vessel type since Nov 2023." data-ar="نسبة الزيارات حسب نوع السفينة منذ نوفمبر 2023.">Share of calls by vessel type since Nov 2023.</small></figcaption></figure>
+      </div>
+    </div>
+  </section>
+  <section class="gutter">
+    <div class="wrap"><a class="spot next" href="#credit-card"><div><small data-en="Next project" data-ar="المشروع التالي">Next project</small><strong data-en="Credit Card &amp; Banking Dashboard" data-ar="داشبورد بطاقات الائتمان والخدمات البنكية">Credit Card &amp; Banking Dashboard</strong></div><span class="arrow">→</span></a></div>
+  </section>
+</main>
+
+<!-- ================= CASE STUDY: CREDIT CARD ================= -->
+<main data-page="credit-card" data-en-title="Credit Card" data-ar-title="بطاقات الائتمان" hidden>
+  <header class="page-head gutter">
+    <div class="wrap">
+      <a class="back" href="#projects"><i>←</i> <span data-en="All projects" data-ar="كل المشاريع">All projects</span></a>
+      <p class="kicker" data-en="Case study · Power BI" data-ar="دراسة حالة · Power BI">Case study · Power BI</p>
+      <h2 class="big split" data-en="Credit Card &amp; Banking Dashboard" data-ar="داشبورد بطاقات الائتمان والخدمات البنكية">Credit Card &amp; Banking Dashboard</h2>
+      <p class="lede reveal" data-en="Final project of the Power BI program at Qafza: a five-page report on a bank's card customers, cards, transactions and risk." data-ar="المشروع النهائي لبرنامج Power BI مع قفزة: تقرير من خمس صفحات عن عملاء البنك وبطاقاتهم ومعاملاتهم والمخاطر.">Final project of the Power BI program at Qafza: a five-page report on a bank's card customers, cards, transactions and risk.</p>
+      <div class="meta reveal">
+        <div><small data-en="Program" data-ar="البرنامج">Program</small><b data-en="Data Analytics Track · Qafza" data-ar="مسار تحليل البيانات · قفزة">Data Analytics Track · Qafza</b></div>
+        <div><small data-en="Tech stack" data-ar="الأدوات المستخدمة">Tech stack</small><b>Power BI · DAX · Excel</b></div>
+        <div><small data-en="Dataset" data-ar="حجم البيانات">Dataset</small><b data-en="13.3M transactions · 6,146 cards" data-ar="13.3 مليون معاملة · 6,146 بطاقة">13.3M transactions · 6,146 cards</b></div>
+      </div>
+    </div>
+  </header>
+  <section class="gutter" style="padding-top:0">
+    <div class="wrap">
+      <div class="frame reveal">
+        <div class="frame-bar"><i></i><i></i><i></i><span>Credit Card Analytics · Executive Overview</span></div>
+        <div class="screen shot-cc"><img class="media" src="media/cc-overview.webp" alt="Executive overview page of the credit card dashboard"></div>
+      </div>
+    </div>
+  </section>
+  <section class="gutter">
+    <div class="wrap cols">
+      <div class="reveal">
+        <p class="kicker" data-en="The question" data-ar="السؤال">The question</p>
+        <h3 data-en="Who are the card customers, how do they spend, and where is the risk?" data-ar="مين عملاء البطاقات، كيف بيصرفوا، ووين المخاطر؟">Who are the card customers, how do they spend, and where is the risk?</h3>
+        <p data-en="The report follows the business from the top down: an executive overview first, then customers, the card portfolio, transaction patterns, and finally risk and fraud." data-ar="التقرير بيمشي من الصورة الكبيرة للتفاصيل: نظرة عامة أولاً، بعدها العملاء، محفظة البطاقات، أنماط المعاملات، وبالآخر المخاطر والاحتيال.">The report follows the business from the top down: an executive overview first, then customers, the card portfolio, transaction patterns, and finally risk and fraud.</p>
+      </div>
+      <div class="reveal">
+        <p class="kicker" data-en="Approach" data-ar="طريقة العمل">Approach</p>
+        <ol class="approach">
+          <li><b>01</b><span data-en="Cleaned the customer, card and transaction data." data-ar="تنظيف بيانات العملاء والبطاقات والمعاملات.">Cleaned the customer, card and transaction data.</span></li>
+          <li><b>02</b><span data-en="Built the data model and relationships in Power BI." data-ar="بناء نموذج البيانات والعلاقات في Power BI.">Built the data model and relationships in Power BI.</span></li>
+          <li><b>03</b><span data-en="Wrote DAX measures for spending, credit limits and risk flags." data-ar="كتابة مقاييس DAX للإنفاق وحدود الائتمان ومؤشرات المخاطر.">Wrote DAX measures for spending, credit limits and risk flags.</span></li>
+          <li><b>04</b><span data-en="Designed five report pages with side navigation, slicers and tooltips." data-ar="تصميم خمس صفحات تقرير مع قائمة تنقل جانبية وفلاتر وبطاقات معلومات.">Designed five report pages with side navigation, slicers and tooltips.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section class="gutter">
+    <div class="wrap">
+      <p class="kicker" data-en="Key findings" data-ar="أهم النتائج">Key findings</p>
+      <h2 class="split" data-en="What the data showed" data-ar="شو بيّنت البيانات">What the data showed</h2>
+      <div class="finds">
+        <div class="spot reveal"><span class="num">$571.8M</span><p data-en="Total spending across 13.31M transactions, an average of $42.98 per transaction." data-ar="إجمالي الإنفاق عبر 13.31 مليون معاملة، بمتوسط 42.98 دولار للمعاملة.">Total spending across 13.31M transactions, an average of $42.98 per transaction.</p></div>
+        <div class="spot reveal"><span class="num">52%</span><p data-en="Mastercard holds 52% of the 6,146 cards issued, followed by Visa at 38%." data-ar="ماستركارد عندها 52% من 6,146 بطاقة، وبعدها فيزا بـ 38%.">Mastercard holds 52% of the 6,146 cards issued, followed by Visa at 38%.</p></div>
+        <div class="spot reveal"><span class="num">282</span><p data-en="Customers flagged as high risk for high debt and low credit score, holding 55 high-risk cards." data-ar="عميل مصنّف عالي المخاطر بسبب دين مرتفع ودرجة ائتمان منخفضة، ومعهم 55 بطاقة عالية المخاطر.">Customers flagged as high risk for high debt and low credit score, holding 55 high-risk cards.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="gutter">
+    <div class="wrap gc-section">
+      <div class="reveal">
+        <p class="kicker" data-en="Try it" data-ar="جرّبها">Try it</p>
+        <h2 class="split" data-en="Card portfolio by brand" data-ar="محفظة البطاقات حسب الماركة">Card portfolio by brand</h2>
+        <p class="lede" data-en="Pick a brand to see how many of the 6,146 issued cards it holds and its share of the portfolio, the same way the dashboard slicer filters the report." data-ar="اختار ماركة لتشوف كم بطاقة إلها من أصل 6,146 بطاقة وحصتها من المحفظة، بنفس طريقة فلتر الداشبورد.">Pick a brand to see how many of the 6,146 issued cards it holds and its share of the portfolio, the same way the dashboard slicer filters the report.</p>
+      </div>
+      <div class="gc-block reveal" id="goldCard">
+        <div class="gc-slicer" role="group" aria-label="Card brand"></div>
+        <div class="gc-wrap">
+          <div class="gc">
+            <div class="gc-top"><div class="gc-bank"></div><div class="gc-brand"></div></div>
+            <div class="gc-chiprow"><div class="gc-chip"></div><div class="gc-nfc"></div></div>
+            <div class="gc-num" dir="ltr"></div>
+            <div class="gc-stats">
+              <div><div class="gc-lbl" data-k="cards"></div><div class="gc-val" data-v="cards"></div></div>
+              <div><div class="gc-lbl" data-k="share"></div><div class="gc-val" data-v="share"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="gutter">
+    <div class="wrap">
+      <p class="kicker" data-en="Inside the dashboard" data-ar="جوّا الداشبورد">Inside the dashboard</p>
+      <h2 class="split" data-en="Report pages" data-ar="صفحات التقرير">Report pages</h2>
+      <div class="panels pages">
+        <figure class="ptile reveal wide"><button class="pimg cc" type="button" data-full="media/cc-overview.webp" aria-label="Enlarge Executive overview"><img src="media/cc-overview.webp" alt="Executive overview page" decoding="async"></button>
+          <figcaption><span class="pn">01</span><b data-en="Executive overview" data-ar="نظرة عامة">Executive overview</b><small data-en="Headline KPIs, yearly transaction amount, card brands and card types." data-ar="أهم المؤشرات، قيمة المعاملات السنوية، أنواع البطاقات وماركاتها.">Headline KPIs, yearly transaction amount, card brands and card types.</small></figcaption></figure>
+        <figure class="ptile reveal"><button class="pimg cc" type="button" data-full="media/cc-customers.webp" aria-label="Enlarge Customer insights"><img src="media/cc-customers.webp" alt="Customer insights page" decoding="async"></button>
+          <figcaption><span class="pn">02</span><b data-en="Customer insights" data-ar="تحليل العملاء">Customer insights</b><small data-en="Credit scores, income vs debt, and a customer profile tooltip on hover." data-ar="درجات الائتمان، الدخل مقابل الدين، وبطاقة معلومات العميل عند المرور عليه.">Credit scores, income vs debt, and a customer profile tooltip on hover.</small></figcaption></figure>
+        <figure class="ptile reveal"><button class="pimg cc" type="button" data-full="media/cc-cards.webp" aria-label="Enlarge Card portfolio"><img src="media/cc-cards.webp" alt="Card portfolio page" decoding="async"></button>
+          <figcaption><span class="pn">03</span><b data-en="Card portfolio" data-ar="محفظة البطاقات">Card portfolio</b><small data-en="Credit limits, cards by brand, expiry years and chip coverage." data-ar="حدود الائتمان، البطاقات حسب الماركة، سنوات الانتهاء، ونسبة البطاقات بشريحة.">Credit limits, cards by brand, expiry years and chip coverage.</small></figcaption></figure>
+        <figure class="ptile reveal"><button class="pimg cc" type="button" data-full="media/cc-transactions.webp" aria-label="Enlarge Transaction analysis"><img src="media/cc-transactions.webp" alt="Transaction analysis page" decoding="async"></button>
+          <figcaption><span class="pn">04</span><b data-en="Transaction analysis" data-ar="تحليل المعاملات">Transaction analysis</b><small data-en="Monthly trend, top merchants, states and merchant categories." data-ar="الاتجاه الشهري، أعلى التجار، الولايات، وفئات التجار.">Monthly trend, top merchants, states and merchant categories.</small></figcaption></figure>
+        <figure class="ptile reveal"><button class="pimg cc" type="button" data-full="media/cc-risk.webp" aria-label="Enlarge Risk &amp; fraud detection"><img src="media/cc-risk.webp" alt="Risk &amp; fraud detection page" decoding="async"></button>
+          <figcaption><span class="pn">05</span><b data-en="Risk &amp; fraud detection" data-ar="المخاطر والاحتيال">Risk &amp; fraud detection</b><small data-en="High-risk customers, unusual activity and dark-web exposure checks." data-ar="العملاء عاليي المخاطر، النشاط غير الطبيعي، وفحص تسريب البطاقات.">High-risk customers, unusual activity and dark-web exposure checks.</small></figcaption></figure>
+      </div>
+      <p style="margin-top:32px"><a class="btn-solid" href="https://lnkd.in/p/dUD5E-7h" target="_blank" rel="noopener" data-en="View the LinkedIn post ↗" data-ar="شاهد المنشور على LinkedIn ↗">View the LinkedIn post ↗</a></p>
+    </div>
+  </section>
+  <section class="gutter">
+    <div class="wrap"><a class="spot next" href="#aqaba"><div><small data-en="Next project" data-ar="المشروع التالي">Next project</small><strong data-en="Red Sea Crisis: Impact on Aqaba Port" data-ar="أزمة البحر الأحمر: الأثر على ميناء العقبة">Red Sea Crisis: Impact on Aqaba Port</strong></div><span class="arrow">→</span></a></div>
+  </section>
+</main>
+
+<!-- ================= CONTACT ================= -->
+<main data-page="contact" data-en-title="Contact" data-ar-title="تواصل" hidden>
+  <header class="page-head gutter">
+    <div class="wrap">
+      <p class="kicker" data-en="Contact" data-ar="تواصل">Contact</p>
+      <h2 class="big split" data-en="Let's work together." data-ar="خلّينا نشتغل سوا.">Let's work together.</h2>
+      <p class="lede reveal" data-en="Open to roles and projects in production planning and data analysis." data-ar="متاح لفرص العمل والمشاريع في تخطيط الإنتاج وتحليل البيانات.">Open to roles and projects in production planning and data analysis.</p>
+    </div>
+  </header>
+  <section class="gutter" style="padding-top:0">
+    <div class="wrap cgrid">
+      <div class="spot ccard reveal">
+        <span class="k">LinkedIn</span>
+        <a class="v" href="https://www.linkedin.com/in/qusaifayedd" target="_blank" rel="noopener">linkedin.com/in/qusaifayedd</a>
+        <a class="copy" href="https://www.linkedin.com/in/qusaifayedd" target="_blank" rel="noopener" style="text-decoration:none" data-en="Open profile ↗" data-ar="افتح الحساب ↗">Open profile ↗</a>
+      </div>
+      <div class="spot ccard reveal">
+        <span class="k" data-en="Email" data-ar="البريد الإلكتروني">Email</span>
+        <span class="v" id="email">qusaifayed@gmail.com</span>
+        <button class="copy" type="button" data-target="email" data-en="Copy" data-ar="نسخ">Copy</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="gutter"><div class="wrap">
+  <span data-en="© 2026 Qusai Fayed" data-ar="© 2026 قصي فايد">© 2026 Qusai Fayed</span>
+  <a class="mono" href="https://www.linkedin.com/in/qusaifayedd" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn ↗</a>
+</div></footer>
+
+<!-- project card template, cloned into every [data-cards] list -->
+<template id="cardsTpl">
+  <a class="spot project reveal" href="#aqaba">
+    <div class="shot vid"><video class="media" src="media/aqaba.mp4?v=3" poster="media/aqaba-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+    <div class="pbody">
+      <span class="pnum">PROJECT 01 · POWER BI</span>
+      <h3 data-en="Red Sea Crisis: Impact on Aqaba Port" data-ar="أزمة البحر الأحمر: الأثر على ميناء العقبة">Red Sea Crisis: Impact on Aqaba Port</h3>
+      <p data-en="How the Red Sea shipping disruption changed vessel traffic and trade at Jordan's only seaport." data-ar="كيف غيّر اضطراب الملاحة في البحر الأحمر حركة السفن والتجارة في الميناء البحري الوحيد في الأردن.">How the Red Sea shipping disruption changed vessel traffic and trade at Jordan's only seaport.</p>
+      <div class="chips"><span>Power BI</span><span>DAX</span><span>IMF PortWatch</span></div>
+      <span class="go"><span data-en="View case study" data-ar="شاهد المشروع">View case study</span> <i>→</i></span>
+    </div>
+  </a>
+  <a class="spot project reveal" href="#credit-card">
+    <div class="shot vid cc"><img class="media" src="media/cc-overview.webp" alt="" aria-hidden="true"></div>
+    <div class="pbody">
+      <span class="pnum">PROJECT 02 · POWER BI</span>
+      <h3 data-en="Credit Card &amp; Banking Dashboard" data-ar="داشبورد بطاقات الائتمان والخدمات البنكية">Credit Card &amp; Banking Dashboard</h3>
+      <p data-en="Final project of the Power BI program at Qafza: a five-page report on customers, cards, transactions and risk." data-ar="المشروع النهائي لبرنامج Power BI مع قفزة: تقرير من خمس صفحات عن العملاء والبطاقات والمعاملات والمخاطر.">Final project of the Power BI program at Qafza: a five-page report on customers, cards, transactions and risk.</p>
+      <div class="chips"><span>Power BI</span><span>DAX</span><span>5 pages</span></div>
+      <span class="go"><span data-en="View case study" data-ar="شاهد المشروع">View case study</span> <i>→</i></span>
+    </div>
+  </a>
+</template>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('langBtn');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var G=window.gsap, hasG=!!(G&&window.ScrollTrigger), hasSplit=hasG&&!!window.SplitText;
+  if(hasG){G.registerPlugin(ScrollTrigger); if(hasSplit) G.registerPlugin(SplitText);}
+
+  /* ---------- build repeated pieces ---------- */
+  var MOCK={
+    a:'<div class="kpi"><i></i><i></i></div><div class="kpi"><i></i><i></i></div><div class="kpi"><i></i><i></i></div><div class="side"></div>'+
+      '<div class="chart"><b style="height:72%"></b><b style="height:78%"></b><b style="height:81%"></b><b style="height:76%"></b><b class="dip" style="height:44%"></b><b class="dip" style="height:31%"></b><b class="dip" style="height:36%"></b><b class="dip" style="height:42%"></b><b style="height:50%"></b></div>'+
+      '<div class="line"><svg viewBox="0 0 300 80" preserveAspectRatio="none"><polyline fill="none" style="stroke:var(--blue)" stroke-width="2" points="0,30 40,26 80,28 120,24 150,58 190,66 230,60 270,52 300,48"/><line x1="150" y1="0" x2="150" y2="80" style="stroke:var(--accent)" stroke-dasharray="4 4"/></svg></div>',
+    b:'<div class="kpi"><i></i><i></i></div><div class="kpi"><i></i><i></i></div><div class="kpi"><i></i><i></i></div><div class="kpi"><i></i><i></i></div>'+
+      '<div class="chart"><b style="height:40%"></b><b style="height:55%"></b><b style="height:48%"></b><b style="height:66%"></b><b style="height:60%"></b><b class="dip" style="height:84%"></b><b style="height:70%"></b><b style="height:62%"></b></div>'+
+      '<div class="side"></div><div class="line"><svg viewBox="0 0 300 80" preserveAspectRatio="none"><polyline fill="none" style="stroke:var(--accent)" stroke-width="2" points="0,60 40,52 80,55 120,40 160,44 200,30 240,34 300,20"/></svg></div>'
+  };
+  var tpl=document.getElementById('cardsTpl');
+  document.querySelectorAll('[data-cards]').forEach(function(list){list.appendChild(tpl.content.cloneNode(true));});
+  document.querySelectorAll('[data-mock]').forEach(function(m){m.innerHTML=MOCK[m.getAttribute('data-mock')];});
+
+  /* ---------- language ---------- */
+  function setTexts(lang){
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var t=el.getAttribute('data-'+lang); if(t!==null) el.textContent=t;
+    });
+    root.lang=lang; root.dir=lang==='ar'?'rtl':'ltr';
+    btn.textContent=lang==='ar'?'English':'العربية';
+    try{localStorage.setItem('qa-lang',lang)}catch(e){}
+  }
+  var lang='en';
+  try{lang=localStorage.getItem('qa-lang')||'en'}catch(e){}
+  setTexts(lang);
+
+  /* ---------- copy buttons + spotlight ---------- */
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var el=document.getElementById(b.getAttribute('data-target')), txt=el.textContent.trim();
+      var done=function(){b.textContent=root.lang==='ar'?'تم النسخ':'Copied';setTimeout(function(){b.textContent=b.getAttribute('data-'+root.lang)},1500)};
+      var fb=function(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fb)}else{fb()}
+    });
+  });
+  document.querySelectorAll('.spot').forEach(function(c){
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});
+  });
+
+  document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});
+
+  /* ---------- Lenis ---------- */
+  var lenis=null;
+  if(window.Lenis&&!reduce){
+    lenis=new Lenis({lerp:.09,smoothWheel:true});
+    if(hasG){lenis.on('scroll',ScrollTrigger.update);G.ticker.add(function(t){lenis.raf(t*1000)});G.ticker.lagSmoothing(0);}
+    else{(function raf(t){lenis.raf(t);requestAnimationFrame(raf)})(0);}
+  }
+  function toTop(){ if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); window.scrollTo(0,0); }
+
+  /* ---------- per-page animations ---------- */
+  var splits=[];
+  var heroTl=null;
+  function teardown(){
+    if(heroTl){heroTl.kill();heroTl=null;}
+    splits.forEach(function(s){try{s.revert()}catch(e){}}); splits=[];
+    if(hasG){ScrollTrigger.getAll().forEach(function(t){t.kill()});}
+  }
+  function animatePage(page,first){
+    if(!hasG||reduce) return;
+    var reveals=page.querySelectorAll('.reveal'), par=page.querySelectorAll('.parallax'), steps=page.querySelectorAll('.steps li');
+    G.killTweensOf(reveals); G.set(reveals,{clearProps:'transform,opacity'});
+    reveals.forEach(function(el){
+      G.from(el,{y:50,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%',once:true}});
+    });
+    par.forEach(function(el){
+      G.fromTo(el,{yPercent:-5},{yPercent:5,ease:'none',scrollTrigger:{trigger:el.parentNode,start:'top bottom',end:'bottom top',scrub:true}});
+    });
+    steps.forEach(function(li){
+      G.fromTo(li,{'--p':'0%'},{'--p':'100%',ease:'none',scrollTrigger:{trigger:li,start:'top 85%',end:'top 45%',scrub:true}});
+    });
+    var pn=page.querySelector('#panel');
+    if(pn){G.fromTo(pn,{opacity:0,y:50},{opacity:1,y:0,duration:1.4,ease:'expo.out',delay:first?.45:.2});}
+    if(!hasSplit) return;
+    var ar=root.lang==='ar';
+    var h1=page.querySelector('#heroName');
+    if(h1){
+      var s=SplitText.create(h1,{type:ar?'words':'chars,words',mask:ar?'words':'chars'}); splits.push(s);
+      var parts=ar?s.words:s.chars;
+      G.from(parts,{yPercent:110,duration:1,ease:'expo.out',stagger:ar?.08:.035,delay:first?.15:.05});
+      heroTl=G.fromTo(h1,{textShadow:'0 0 24px rgba('+PAL.acc+',.15)'},{textShadow:'0 0 60px rgba('+PAL.acc+',.45)',duration:2.6,ease:'sine.inOut',yoyo:true,repeat:-1,delay:first?1.4:1});
+      var p=page.querySelector('#heroIntro');
+      var ps=SplitText.create(p,{type:'words'}); splits.push(ps);
+      G.from(ps.words,{filter:'blur(10px)',opacity:0,y:-12,duration:.8,ease:'power3.out',stagger:.03,delay:first?.5:.2});
+    }
+    page.querySelectorAll('.split').forEach(function(el){
+      var hs=SplitText.create(el,{type:'words',mask:'words'}); splits.push(hs);
+      G.from(hs.words,{yPercent:105,duration:.9,ease:'expo.out',stagger:.06,scrollTrigger:{trigger:el,start:'top 92%',once:true}});
+    });
+    ScrollTrigger.refresh();
+  }
+
+  /* ---------- videos: force muted autoplay, play only what is visible ---------- */
+  function playVideos(){
+    document.querySelectorAll('video.media').forEach(function(v){
+      v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute('playsinline','');
+      if(v.offsetParent!==null&&!document.hidden){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+      else{v.pause();}
+    });
+  }
+  ['pointerdown','touchstart','keydown','scroll'].forEach(function(ev){window.addEventListener(ev,function once(){playVideos();window.removeEventListener(ev,once);},{passive:true});});
+  document.addEventListener('visibilitychange',playVideos);
+  if('IntersectionObserver' in window){var vio=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else v.pause();});});
+    document.querySelectorAll('video.media').forEach(function(v){vio.observe(v);});}
+  document.querySelectorAll('video.media').forEach(function(v){
+    v.addEventListener('click',function(e){if(v.closest('a'))return;if(v.paused){v.play().catch(function(){});}else{v.pause();}});
+    v.addEventListener('loadeddata',function(){if(v.offsetParent!==null&&v.paused)v.play().catch(function(){});});
+  });
+
+  /* ---------- lightbox ---------- */
+  var lb=document.getElementById('lightbox'),lbImg=lb.querySelector('img');
+  function closeLb(){lb.hidden=true;if(lenis)lenis.start();}
+  document.querySelectorAll('.pimg').forEach(function(b){b.addEventListener('click',function(){
+    lbImg.src=b.getAttribute('data-full');lbImg.alt=b.querySelector('img').alt;lb.hidden=false;if(lenis)lenis.stop();
+    if(hasG&&!reduce)G.fromTo(lbImg,{scale:.92,opacity:0},{scale:1,opacity:1,duration:.45,ease:'power3.out'});
+  });});
+  lb.addEventListener('click',closeLb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)closeLb();});
+
+  /* ---------- GoldCard (vanilla port of Qusai's GoldCard.jsx) ---------- */
+  var GC_BRANDS=[{key:'ALL',en:'ALL BRANDS',ar:'كل العلامات',cards:6146},{key:'MASTERCARD',en:'MASTERCARD',ar:'ماستركارد',cards:3209},
+    {key:'VISA',en:'VISA',ar:'فيزا',cards:2326},{key:'AMEX',en:'AMEX',ar:'أمريكان إكسبريس',cards:402},{key:'DISCOVER',en:'DISCOVER',ar:'ديسكفر',cards:209}];
+  var GC_TOTAL=6146,GC_T={en:{title:'CARD PORTFOLIO',cards:'CARDS ISSUED',share:'PORTFOLIO SHARE'},ar:{title:'محفظة البطاقات',cards:'البطاقات المصدرة',share:'الحصة من المحفظة'}};
+  var gcEl=document.getElementById('goldCard'),gcSel=0;
+  function renderGC(){
+    if(!gcEl)return;var lang=root.lang==='ar'?'ar':'en',t=GC_T[lang],b=GC_BRANDS[gcSel];
+    gcEl.dir=lang==='ar'?'rtl':'ltr';
+    gcEl.querySelector('.gc-slicer').innerHTML=GC_BRANDS.map(function(x,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===gcSel)+'" class="'+(i===gcSel?'on':'')+'">'+x[lang]+'</button>';}).join('');
+    gcEl.querySelector('.gc-bank').textContent=t.title;
+    gcEl.querySelector('.gc-brand').textContent=b[lang];
+    gcEl.querySelector('.gc-num').innerHTML='••••&nbsp;&nbsp;••••&nbsp;&nbsp;••••&nbsp;&nbsp;'+String(b.cards).padStart(4,'0');
+    gcEl.querySelector('[data-k="cards"]').textContent=t.cards;
+    gcEl.querySelector('[data-k="share"]').textContent=t.share;
+    gcEl.querySelector('[data-v="cards"]').textContent=b.cards.toLocaleString('en-US');
+    gcEl.querySelector('[data-v="share"]').textContent=((b.cards/GC_TOTAL)*100).toFixed(1).replace('.0','')+'%';
+  }
+  if(gcEl){
+    gcEl.querySelector('.gc-slicer').addEventListener('click',function(e){var bt=e.target.closest('button');if(!bt)return;gcSel=+bt.getAttribute('data-i');renderGC();});
+    btn.addEventListener('click',function(){setTimeout(renderGC,0);});
+    renderGC();
+  }
+
+  /* ---------- preload every image and the video in the background so other pages open instantly ---------- */
+  function preloadMedia(){
+    var seen={};
+    document.querySelectorAll('img[src],[data-full],video[poster]').forEach(function(el){
+      [el.getAttribute('src'),el.getAttribute('data-full'),el.getAttribute('poster')].forEach(function(u){
+        if(!u||seen[u]||el.tagName==='VIDEO'&&u===el.getAttribute('src'))return;seen[u]=1;var im=new Image();im.decoding='async';im.src=u;});
+    });
+    document.querySelectorAll('video.media').forEach(function(v){v.preload='auto';});
+  }
+  if(document.readyState==='complete')setTimeout(preloadMedia,300);else window.addEventListener('load',function(){setTimeout(preloadMedia,300);});
+
+  /* ---------- router ---------- */
+  var pages={}; document.querySelectorAll('main[data-page]').forEach(function(m){pages[m.getAttribute('data-page')]=m;});
+  var current=null, busy=false;
+  var curtain=document.getElementById('curtain'), cLabel=document.getElementById('curtainLabel');
+  if(hasG) G.set(curtain,{y:0,yPercent:100});
+  function routeName(){var h=location.hash.replace('#','');return pages[h]?h:'home';}
+  function swap(name,first){
+    teardown();
+    Object.keys(pages).forEach(function(k){pages[k].hidden=(k!==name);});
+    current=name;
+    document.querySelectorAll('[data-nav]').forEach(function(a){
+      var n=a.getAttribute('data-nav'); a.classList.toggle('on',n===name||(n==='projects'&&(name==='aqaba'||name==='credit-card')));
+    });
+    toTop();
+    ganttVisible(name==='home');
+    animatePage(pages[name],first);
+    playVideos();
+  }
+  function go(name){
+    if(name===current||busy) return;
+    if(!hasG||reduce){swap(name,false);return;}
+    busy=true;
+    cLabel.textContent=pages[name].getAttribute('data-'+root.lang+'-title');
+    G.timeline({onComplete:function(){busy=false;G.set(curtain,{y:0,yPercent:100});if(routeName()!==current)go(routeName());}})
+      .fromTo(curtain,{y:0,yPercent:100},{y:0,yPercent:0,duration:.55,ease:'power3.inOut'})
+      .fromTo(cLabel,{yPercent:40,opacity:0},{yPercent:0,opacity:1,duration:.35,ease:'power2.out'},'-=.2')
+      .add(function(){swap(name,false);})
+      .to(curtain,{yPercent:-100,duration:.6,ease:'power3.inOut',delay:.15});
+  }
+  window.addEventListener('hashchange',function(){go(routeName());});
+
+  btn.addEventListener('click',function(){
+    teardown(); setTexts(root.lang==='ar'?'en':'ar'); animatePage(pages[current],false);
+  });
+
+  /* ---------- ScrollVelocity marquee ---------- */
+  var words=['Production Planning','Data Analysis','Power BI','DAX','SQL','Excel','Dashboards','Industrial Engineering'];
+  function fill(el,o){var h='';for(var k=0;k<4;k++){words.forEach(function(w,i){h+='<span class="'+((i+o)%3===0?'hl':'')+'">'+w+'<em>/</em></span>';});}el.innerHTML=h;}
+  var velVis=true;if('IntersectionObserver' in window){new IntersectionObserver(function(es){velVis=es[0].isIntersecting;}).observe(document.querySelector('.velocity'));}
+  var t1=document.getElementById('t1'),t2=document.getElementById('t2');fill(t1,0);fill(t2,1);
+  if(!reduce){
+    var x1=0,x2=null,boost=0;
+    (function loop(){
+      if(current==='home'&&velVis&&!document.hidden){
+        if(x2===null) x2=-t2.scrollWidth/2;
+        var v=lenis?lenis.velocity:0; boost+=(Math.abs(v)*0.6-boost)*0.1;
+        var h1=t1.scrollWidth/2,h2=t2.scrollWidth/2;
+        x1-=0.5+boost; x2+=0.5+boost;
+        if(-x1>=h1) x1+=h1; if(x2>=0) x2-=h2;
+        t1.style.transform='translate3d('+x1+'px,0,0)'; t2.style.transform='translate3d('+x2+'px,0,0)';
+      }
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ---------- theme ---------- */
+  var PAL={};
+  function readPal(){var cs=getComputedStyle(root),g=function(k){return cs.getPropertyValue(k).trim();};
+    PAL={acc:g('--accent-rgb'),blue:g('--blue-rgb'),fg:g('--fg-rgb'),dot:g('--dot-rgb'),bg:g('--bg'),tip:g('--tip-bg'),fgc:g('--fg'),muted:g('--muted'),ok:g('--ok'),bad:g('--bad'),hi:g('--pdot')};}
+  var darkMQ=matchMedia('(prefers-color-scheme: dark)');
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':darkMQ.matches;}
+  function themeChanged(){readPal();if(reduce){drawStars(0);drawRibbon(0);}if(heroTl&&hasG){var h=document.getElementById('heroName');heroTl.kill();heroTl=G.fromTo(h,{textShadow:'0 0 24px rgba('+PAL.acc+',.15)'},{textShadow:'0 0 60px rgba('+PAL.acc+',.45)',duration:2.6,ease:'sine.inOut',yoyo:true,repeat:-1});}}
+  try{var st=localStorage.getItem('qa-theme');if(st==='light'||st==='dark')root.setAttribute('data-theme',st);}catch(e){}
+  readPal();
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var next=isDark()?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('qa-theme',next)}catch(e){}
+    themeChanged();
+  });
+  if(darkMQ.addEventListener)darkMQ.addEventListener('change',themeChanged);
+
+  /* ---------- Data heatmap grid (all pages) ---------- */
+  var sc=document.getElementById('stars'),sx=sc.getContext('2d'),SW=0,SH=0,mx=0,my=0,tmx=-9999,tmy=-9999,GAP=26;
+  function buildStars(){var d=1;SW=innerWidth;SH=innerHeight;sc.width=SW*d;sc.height=SH*d;sx.setTransform(d,0,0,d,0,0);}
+  function drawStars(now){
+    var t=now/1000;sx.clearRect(0,0,SW,SH);
+    mx+=(tmx-mx)*.12;my+=(tmy-my)*.12;
+    var oy=-((window.scrollY||0)*.15%GAP);
+    for(var y=oy+GAP/2;y<SH+GAP;y+=GAP){
+      for(var x=GAP/2;x<SW;x+=GAP){
+        var v=(Math.sin(x*.017+t*.55)+Math.sin(y*.021-t*.42)+Math.sin((x+y)*.011+t*.3)+3)/6;
+        var d=Math.hypot(x-mx,y-my),boost=d<160?(1-d/160)*.5:0;
+        var a=.035+v*v*v*.28+boost;
+        if(v>.8||boost>.3){sx.fillStyle='rgba('+PAL.acc+','+Math.min(a+.1,.85).toFixed(3)+')';sx.fillRect(x-1.5,y-1.5,3,3);}
+        else{sx.fillStyle='rgba('+PAL.dot+','+a.toFixed(3)+')';sx.fillRect(x-1,y-1,2,2);}
+      }
+    }
+  }
+  buildStars();drawStars(0);
+  window.addEventListener('pointermove',function(e){tmx=e.clientX;tmy=e.clientY;});
+  document.addEventListener('pointerleave',function(){tmx=tmy=-9999;});
+
+  /* ---------- Live chart (home hero) ---------- */
+  var rc=document.getElementById('ribbon'),rx=rc.getContext('2d'),RW=0,RH=0,onHome=true,inView=true;
+  var STEP=28,off=0,series=[],bars=[],hoverX=null;
+  function walk(prev,mean,vol){var n=prev+(mean-prev)*.08+(Math.random()-.5)*vol;return Math.max(.05,Math.min(.95,n));}
+  function buildRibbon(){
+    var d=Math.min(window.devicePixelRatio||1,2),r=rc.getBoundingClientRect();RW=r.width;RH=r.height;if(!RW)return;
+    rc.width=RW*d;rc.height=RH*d;rx.setTransform(d,0,0,d,0,0);
+    var n=Math.ceil(RW/STEP)+4;
+    series=[{mean:.62,vol:.09,col:'245,165,36',w:2.2,glow:true,fill:true},{mean:.42,vol:.07,col:'76,141,255',w:1.6},{mean:.25,vol:.05,col:'233,238,247',w:1,a:.35}];
+    series.forEach(function(s){s.v=[];var p=s.mean;for(var i=0;i<n;i++){p=walk(p,s.mean,s.vol);s.v.push(p);}});
+    bars=[];for(var i=0;i<n;i++)bars.push({h:Math.random()*.5+.1,t:Math.random()*.5+.1});
+  }
+  function X(i){var n=series[0].v.length;return RW-(n-1-i)*STEP+STEP-off;}
+  function Y(v){return RH*.82-v*RH*.62;}
+  function valAt(s,x){var n=s.v.length,f=(x-RW-STEP+off)/STEP+n-1,i=Math.floor(f),k=f-i;if(i<0)return s.v[0];if(i>=n-1)return s.v[n-1];return s.v[i]*(1-k)+s.v[i+1]*k;}
+  function path(s){var v=s.v;rx.beginPath();rx.moveTo(X(0),Y(v[0]));for(var i=1;i<v.length;i++){var xm=(X(i-1)+X(i))/2;rx.bezierCurveTo(xm,Y(v[i-1]),xm,Y(v[i]),X(i),Y(v[i]));}}
+  function drawRibbon(t){
+    if(!RW||!series.length)return;
+    if(!reduce){off+=.45;if(off>=STEP){off-=STEP;series.forEach(function(s){s.v.shift();s.v.push(walk(s.v[s.v.length-1],s.mean,s.vol));});bars.shift();bars.push({h:0,t:Math.random()*.5+.1});}
+      bars.forEach(function(b){b.h+=(b.t-b.h)*.04;if(Math.random()<.004)b.t=Math.random()*.5+.1;});}
+    rx.clearRect(0,0,RW,RH);
+    rx.font='10px "JetBrains Mono", monospace';rx.lineWidth=1;
+    for(var g=0;g<=4;g++){var gy=Y(g/4);rx.strokeStyle='rgba('+PAL.dot+',.12)';rx.beginPath();rx.moveTo(0,gy+.5);rx.lineTo(RW,gy+.5);rx.stroke();
+      rx.fillStyle='rgba('+PAL.dot+',.55)';rx.fillText(String(g*500),RW-34,gy-5);}
+    var base=RH*.86;
+    bars.forEach(function(b,i){var bx=X(i)-STEP*.32,bh=b.h*RH*.16;rx.fillStyle='rgba('+PAL.blue+',.14)';rx.fillRect(bx,base-bh,STEP*.64,bh);});
+    var m=series[0],gr=rx.createLinearGradient(0,RH*.15,0,RH*.86);gr.addColorStop(0,'rgba('+PAL.acc+',.22)');gr.addColorStop(1,'rgba('+PAL.acc+',0)');
+    path(m);rx.lineTo(X(m.v.length-1),base);rx.lineTo(X(0),base);rx.closePath();rx.fillStyle=gr;rx.fill();
+    for(var si=series.length-1;si>=0;si--){var s=series[si];rx.save();
+      if(s.glow){rx.strokeStyle='rgba('+PAL.acc+',.13)';rx.lineWidth=9;path(s);rx.stroke();}
+      rx.strokeStyle='rgba('+[PAL.acc,PAL.blue,PAL.fg][si]+','+(s.a||.9)+')';rx.lineWidth=s.w;path(s);rx.stroke();rx.restore();}
+    m.v.forEach(function(v,i){if(i%3)return;rx.fillStyle=PAL.hi;rx.beginPath();rx.arc(X(i),Y(v),1.8,0,6.283);rx.fill();});
+    if(RW<700)return;   /* no tooltip on phones: it would sit on top of the hero text */
+    var cx=hoverX!==null?hoverX:RW*(root.dir==='rtl'?.48:.52),cv=valAt(m,cx),cy=Y(cv),prev=valAt(m,cx-STEP*4);
+    rx.strokeStyle='rgba('+PAL.acc+',.55)';rx.setLineDash([3,4]);rx.beginPath();rx.moveTo(cx+.5,RH*.12);rx.lineTo(cx+.5,base);rx.stroke();rx.setLineDash([]);
+    rx.fillStyle=PAL.bg;rx.strokeStyle='rgb('+PAL.acc+')';rx.lineWidth=2;rx.beginPath();rx.arc(cx,cy,5,0,6.283);rx.fill();rx.stroke();
+    var val=Math.round(cv*2000),dl=((cv-prev)/prev*100),lbl=val.toLocaleString('en-US'),dtx=(dl>=0?'+':'')+dl.toFixed(1)+'%';
+    var bw=118,bx2=Math.min(cx+12,RW-bw-8),by=Math.max(cy-58,RH*.1);
+    rx.fillStyle=PAL.tip;rx.strokeStyle='rgba('+PAL.dot+',.35)';rx.lineWidth=1;rx.beginPath();if(rx.roundRect)rx.roundRect(bx2,by,bw,44,8);else rx.rect(bx2,by,bw,44);rx.fill();rx.stroke();
+    rx.fillStyle=PAL.muted;rx.fillText('units / week',bx2+10,by+16);
+    rx.font='600 13px "JetBrains Mono", monospace';rx.fillStyle=PAL.fgc;rx.fillText(lbl,bx2+10,by+34);
+    rx.fillStyle=dl>=0?PAL.ok:PAL.bad;rx.fillText(dtx,bx2+bw-10-rx.measureText(dtx).width,by+34);
+  }
+  rc.parentNode.addEventListener('pointermove',function(e){var r=rc.getBoundingClientRect();hoverX=e.clientX-r.left;if(reduce)drawRibbon(0);});
+  rc.parentNode.addEventListener('pointerleave',function(){hoverX=null;if(reduce)drawRibbon(0);});
+
+  /* ---------- Workflow panel ---------- */
+  var graph=document.getElementById('pgraph'),gsvg=graph.querySelector('svg'),NODES={};
+  graph.querySelectorAll('.node').forEach(function(n){NODES[n.getAttribute('data-n')]=n;});
+  var EDGES=[['1','2','r','l','true'],['1','3','r','l','else'],['2','4','r','l'],['3','5','r','l'],['4','5','b','t']];
+  var ROUTES=[['1','2','4','5'],['1','3','5']],route=0,wires=[];
+  function anchor(n,s){var x=n.offsetLeft,y=n.offsetTop,w=n.offsetWidth,h=n.offsetHeight;
+    return s==='r'?[x+w,y+h/2]:s==='l'?[x,y+h/2]:s==='b'?[x+w/2,y+h]:[x+w/2,y];}
+  function fitGraph(){
+    var box=graph.parentNode,w=box.clientWidth;if(!w)return;
+    if(w>=520){graph.style.width=w+'px';graph.style.transform='';box.style.height='250px';}
+    else{var k=w/520;graph.style.width='520px';graph.style.transform='scale('+k+')';box.style.height=Math.round(250*k)+'px';}
+  }
+  function layoutWires(){
+    fitGraph();
+    var W=graph.offsetWidth,H=graph.offsetHeight;if(!W)return;
+    gsvg.setAttribute('viewBox','0 0 '+W+' '+H);gsvg.innerHTML='';
+    graph.querySelectorAll('.wl').forEach(function(l){l.remove();});
+    wires=EDGES.map(function(e){
+      var a=anchor(NODES[e[0]],e[2]),b=anchor(NODES[e[1]],e[3]),d;
+      if(e[2]==='b'){var m1=(a[1]+b[1])/2;d='M'+a[0]+' '+a[1]+' C'+a[0]+' '+m1+' '+b[0]+' '+m1+' '+b[0]+' '+b[1];}
+      else{var m2=(a[0]+b[0])/2;d='M'+a[0]+' '+a[1]+' C'+m2+' '+a[1]+' '+m2+' '+b[1]+' '+b[0]+' '+b[1];}
+      var p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',d);p.setAttribute('class','wire');gsvg.appendChild(p);
+      var dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('r','3');dot.setAttribute('class','pdot');dot.style.opacity=0;gsvg.appendChild(dot);
+      var len=p.getTotalLength();
+      if(e[4]){var L=document.createElement('span');L.className='wl';L.textContent=e[4];var m=p.getPointAtLength(len*.5);L.style.left=m.x+'px';L.style.top=m.y+'px';graph.appendChild(L);}
+      return {from:e[0],to:e[1],path:p,dot:dot,len:len,k:0};
+    });
+    setRoute(route);
+  }
+  function setRoute(ri){
+    route=ri;var r=ROUTES[ri];
+    Object.keys(NODES).forEach(function(k){NODES[k].classList.toggle('hot',r.indexOf(k)>-1);});
+    wires.forEach(function(w){var i=r.indexOf(w.from);w.on=i>-1&&r[i+1]===w.to;w.k=0;
+      w.path.setAttribute('class','wire'+(w.on?' flow':''));w.dot.style.opacity=w.on&&!reduce?1:0;});
+  }
+  function moveDots(){wires.forEach(function(w){if(!w.on)return;w.k=(w.k+.012)%1;var q=w.path.getPointAtLength(w.k*w.len);w.dot.setAttribute('cx',q.x);w.dot.setAttribute('cy',q.y);});}
+  var logEl=document.getElementById('plog'),JOBS=['capacity check','mrp run','dashboard refresh','inventory sync','shift plan export'],ji=0;
+  function addLog(){
+    var li=document.createElement('li');
+    li.innerHTML='<time>'+new Date().toTimeString().slice(0,8)+'</time><span>'+JOBS[ji++%JOBS.length]+'</span><span>'+(Math.random()*1.6+.4).toFixed(1)+'s</span>';
+    logEl.insertBefore(li,logEl.firstChild);while(logEl.children.length>3)logEl.removeChild(logEl.lastChild);
+    if(hasG&&!reduce)G.from(li,{y:-14,opacity:0,duration:.5,ease:'power2.out'});
+  }
+  addLog();addLog();addLog();
+  setInterval(function(){if(onHome&&inView&&!document.hidden){addLog();}},2600);
+  setInterval(function(){if(onHome&&inView&&!document.hidden){setRoute((route+1)%ROUTES.length);}},3400);
+
+  var panel=document.getElementById('panel'),hero=rc.parentNode;
+  function tiltBase(){return innerWidth>920?{rotationY:-14,rotationX:7,rotationZ:1}:{rotationY:0,rotationX:0,rotationZ:0};}
+  if(hasG){G.set(panel,Object.assign({transformPerspective:1400},tiltBase()));}
+  if(hasG&&!reduce){
+    var tiltY=G.quickTo(panel,'rotationY',{duration:.9,ease:'power2.out'}),tiltX=G.quickTo(panel,'rotationX',{duration:.9,ease:'power2.out'});
+    G.to('.panel-wrap',{y:-12,duration:3.2,ease:'sine.inOut',yoyo:true,repeat:-1});
+    hero.addEventListener('pointermove',function(e){
+      if(innerWidth<=920)return;var r=hero.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+      tiltY(-14+px*12);tiltX(7-py*10);
+    });
+    hero.addEventListener('pointerleave',function(){G.to(panel,Object.assign({duration:1.2,ease:'power3.out'},tiltBase()));});
+  }
+
+  /* ---------- Magnetic buttons ---------- */
+  if(hasG&&!reduce&&matchMedia('(pointer:fine)').matches){
+    document.querySelectorAll('.btn-solid,.star,.lang,.next .arrow').forEach(function(el){
+      el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect();G.to(el,{x:(e.clientX-r.left-r.width/2)*.3,y:(e.clientY-r.top-r.height/2)*.4,duration:.4,ease:'power3.out',overwrite:true});});
+      el.addEventListener('pointerleave',function(){G.to(el,{x:0,y:0,duration:.8,ease:'elastic.out(1,.4)',overwrite:true});});
+    });
+  }
+
+  /* ---------- main loop ---------- */
+  var t0=performance.now();
+  function frame(now){
+    requestAnimationFrame(frame);
+    if(document.hidden)return;
+    drawStars(now);
+    if(onHome&&inView){drawRibbon((now-t0)/1000);moveDots();}
+  }
+  function ganttVisible(v){onHome=v;if(v){buildRibbon();layoutWires();if(reduce)drawRibbon(0);}}
+  window.addEventListener('resize',function(){
+    buildStars();if(onHome){buildRibbon();layoutWires();}
+    if(hasG)G.to(panel,Object.assign({duration:.3},tiltBase()));
+    if(reduce){drawStars(0);drawRibbon(0);}
+  });
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){inView=es[0].isIntersecting;}).observe(hero);}
+  if(!reduce) requestAnimationFrame(frame);
+  /* ---------- start ---------- */
+  var startPage=routeName();
+  Object.keys(pages).forEach(function(k){pages[k].hidden=(k!==startPage);});
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){swap(startPage,true);});
+})();
+</script>
+
+</body>
+</html>
